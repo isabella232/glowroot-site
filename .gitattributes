@@ -1,0 +1,6 @@
+#
+# The goal of this file is to normalize line endings to LF on checkin without having to rely on the
+# core.autocrlf setting.
+#
+
+* text=auto

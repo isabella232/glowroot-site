@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<!--(bake _includes/head.html)-->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@glowroot"/>
+<meta name="twitter:title" content="Easy to use, low overhead, open source Java APM"/>
+<meta name="twitter:description" content="Glowroot helps you get to the root of application performance issues."/>
+<meta name="twitter:image" content="https://glowroot.org/images/favicon-440x440.22b5b3f3.png"/>
+<body>
+<div id="wrap">
+  <!--(bake _includes/header.html)-->
+  <div class="container" style="padding-bottom: 20px;">
+    <a href="https://github.com/glowroot/glowroot">
+      <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
+    </a>
+
+    <div class="index-header">
+      <div class="index-header-1" style="display: inline-block;">
+        <img src="images/favicon-440x440.png" width="165" height="165">
+      </div>
+      <div class="index-header-2" style="display: inline-block; vertical-align: top; padding-top: 25px;">
+        <h1>Glowroot</h1>
+
+        <h2>
+          Open source Java APM
+        </h2>
+      </div>
+    </div>
+    <hr class="soften">
+    <div class="index-body" style="padding-top: 10px;">
+      <div class="row">
+        <!-- margin-bottom is for mobile devices when the columns become rows -->
+        <div class="col-md-4" style="margin-bottom: 40px;">
+          <h2>(Very) easy to use</h2>
+
+          <p>
+            Download and unzip
+            <!-- line-height=0 is to keep the target element from pushing down next line a bit -->
+            <a href="https://github.com/glowroot/glowroot/releases/download/v0.9.10/glowroot-0.9.10-dist.zip"
+               id="downloadLink" style="line-height: 0;">glowroot-0.9.10-dist.zip</a>,
+            add <code class="index-code">-javaagent:path/to/glowroot.jar</code>
+            to your JVM args, start your app, point browser to
+            <code class="index-code">http://localhost:4000</code>,
+            and see all <a href="https://demo.glowroot.org">this</a>!
+          </p>
+        </div>
+        <!-- margin-bottom is for mobile devices when the columns become rows -->
+        <div class="col-md-4" style="margin-bottom: 40px;">
+          <h2>Very (very) low overhead</h2>
+
+          <p>
+            Overhead depends on many factors, but is
+            <a href="overhead.html" style="line-height: 0;">generally in the low
+              <span style="text-decoration: underline;">microseconds</span>
+            </a>
+            due to extensive microbenchmarking and tuning of Glowroot itself.
+          </p>
+        </div>
+        <!-- margin-bottom is for mobile devices when the columns become rows -->
+        <div class="col-md-4" style="margin-bottom: 40px;">
+          <h2>Get to the root</h2>
+
+          <p>
+            Glowroot helps you get to the root of application performance issues.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+    </div>
+  </div>
+</div>
+<!--(bake _includes/footer.html)-->
+<script>
+  var downloadLink = document.getElementById('downloadLink');
+  addListener(downloadLink, 'click', function () {
+    ga('send', 'pageview', '/download');
+  });
+  function addListener(element, type, callback) {
+    if (element.addEventListener) element.addEventListener(type, callback);
+    else if (element.attachEvent) element.attachEvent('on' + type, callback);
+  }
+</script>
+</body>
+</html>

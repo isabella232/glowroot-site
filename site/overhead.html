@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<!--(bake _includes/head.html title_prefix="Overhead &middot; ")-->
+<body>
+<div id="wrap">
+  <!--(bake _includes/header.html li_overhead_class="active")-->
+  <div class="container" style="padding-top: 50px; padding-bottom: 120px;">
+    <a href="https://github.com/glowroot/glowroot">
+      <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
+    </a>
+
+    <h1 style="font-size: 48px; margin-bottom: 50px;">Overhead</h1>
+
+    <p>
+      Overhead is so minimal that it is difficult to measure on most applications where the overhead gets lost in the
+      run-to-run variance.
+    </p>
+
+    <p>
+      We have to use super fast microservices with response times in the
+      <span style="text-decoration: underline;">microseconds</span> in order to reliably detect and measure Glowroot's
+      overhead.
+    </p>
+
+    <p>
+      The benchmark below is run against a very fast dropwizard-based microservice
+      (benchmarking is performed using the excellent <a href="http://openjdk.java.net/projects/code-tools/jmh/">JMH</a>).
+    </p>
+
+    <div class="clearfix">
+      <div class="benchmark-table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th></th>
+            <th style="text-align: right;">Baseline</th>
+            <th style="text-align: right;">with<br>Glowroot</th>
+            <th style="text-align: right;">Overhead</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Response times</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="padding-left: 30px;">Average</td>
+            <td style="text-align: right;">80.0 &#956;s</td>
+            <td style="text-align: right;">82.9 &#956;s</td>
+            <td style="text-align: right;">2.9 &#956;s</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 30px;">95th percentile</td>
+            <td style="text-align: right;">86.9 &#956;s</td>
+            <td style="text-align: right;">89.5 &#956;s</td>
+            <td style="text-align: right;">2.6 &#956;s</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 30px;">99th percentile</td>
+            <td style="text-align: right;">97.0 &#956;s</td>
+            <td style="text-align: right;">102.4 &#956;s</td>
+            <td style="text-align: right;">5.4 &#956;s</td>
+          </tr>
+          <tr>
+            <td>Allocated memory per request</td>
+            <td style="text-align: right;">46.6 KB</td>
+            <td style="text-align: right;">48.6 KB</td>
+            <td style="text-align: right;">2.0 KB</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="environment">
+        <div style="text-align: center;">Benchmark environment</div>
+        <hr style="margin: 12px 0 15px; border-top-color: #ddd;">
+        <div style="margin-bottom: 5px;">Intel Xeon E3-1230 v3</div>
+        <div style="margin-bottom: 5px;">Linux (ubuntu) 4.4.0-31</div>
+        <div>Java 1.8.0_101-b13</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px;">
+      For comparison, here is the same test run with a leading commercial Java APM:
+    </p>
+
+    <div class="benchmark-table">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th></th>
+          <th style="text-align: right;">Baseline</th>
+          <th style="text-align: right;">with<br>a leading<br>commercial<br>Java APM</th>
+          <th style="text-align: right;">Overhead</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Response times</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="padding-left: 30px;">Average</td>
+          <td style="text-align: right;">80.0 &#956;s</td>
+          <td style="text-align: right;">133.6 &#956;s</td>
+          <td style="text-align: right;">53.6 &#956;s</td>
+        </tr>
+        <tr>
+          <td style="padding-left: 30px;">95th percentile</td>
+          <td style="text-align: right;">86.9 &#956;s</td>
+          <td style="text-align: right;">143.9 &#956;s</td>
+          <td style="text-align: right;">57.0 &#956;s</td>
+        </tr>
+        <tr>
+          <td style="padding-left: 30px;">99th percentile</td>
+          <td style="text-align: right;">97.0 &#956;s</td>
+          <td style="text-align: right;">157.2 &#956;s</td>
+          <td style="text-align: right;">60.2 &#956;s</td>
+        </tr>
+        <tr>
+          <td>Allocated memory per request</td>
+          <td style="text-align: right;">46.6 KB</td>
+          <td style="text-align: right;">81.2 KB</td>
+          <td style="text-align: right;">34.6 KB</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top: 30px;">
+      Benchmark details can be found at
+      <a href="https://github.com/glowroot/glowroot-benchmark">https://github.com/glowroot/glowroot-benchmark</a>.
+    </p>
+  </div>
+</div>
+<!--(bake _includes/footer.html)-->
+</body>
+</html>

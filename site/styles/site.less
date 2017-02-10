@@ -1,0 +1,273 @@
+@import "../../bower_components/bootstrap/less/variables";
+@import "../../bower_components/bootstrap/less/mixins";
+// component-animations is used by mobile navbar expanding/collapsing
+@import "../../bower_components/bootstrap/less/component-animations";
+// forms is required by navbar
+@import "../../bower_components/bootstrap/less/forms";
+// navs import needs to be before navbar import, othewise navbar is messed up
+@import "../../bower_components/bootstrap/less/navs";
+@import "../../bower_components/bootstrap/less/navbar";
+// basic bootstrap foundation
+@import "../../bower_components/bootstrap/less/grid";
+@import "../../bower_components/bootstrap/less/normalize";
+@import "../../bower_components/bootstrap/less/scaffolding";
+@import "../../bower_components/bootstrap/less/type";
+// grid.less uses &:extend(.clearfix all) and clearfix is defined in utilities.less
+@import "../../bower_components/bootstrap/less/utilities";
+@import "../../bower_components/bootstrap/less/tables";
+
+@glowroot-primary-color: darken(goldenrod, 12%);
+@glowroot-blue: #417998;
+
+@navbar-height: 50px;
+@navbar-inverse-bg: @glowroot-primary-color;
+@navbar-inverse-link-active-bg: darken(@navbar-inverse-bg, 5%);
+@navbar-inverse-link-color: #e8e8e8;
+
+@glowroot-text-color: darken(@glowroot-primary-color, 5%);
+
+html,
+body {
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+html {
+  // to prevent navbar shifting on different pages
+  // see https://github.com/twbs/bootstrap/issues/1648
+  overflow-y: scroll;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  color: #fff !important;
+  text-shadow: 0 0 4px white;
+  font-weight: 700;
+  margin-top: -1px;
+}
+
+.nav.navbar-nav a {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+// wrapper for page content to push down footer
+#wrap {
+  min-height: 100%;
+  height: auto;
+  // negative indent footer by its height
+  margin: 0 auto -100px;
+  // pad bottom by footer height
+  padding: 0 0 100px;
+}
+
+.forkme {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  border: 0;
+}
+
+.footer {
+  height: 100px;
+  background-color: #f5f5f5;
+  color: #777;
+  padding-top: 40px;
+  border-top: 1px solid #e5e5e5;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h1 a {
+  color: @glowroot-text-color;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 58px;
+}
+
+// this is for demo.glowroot.org link
+h1 a {
+  font-size: 32px;
+  @media (min-width: 520px) {
+    font-size: 48px;
+  }
+}
+
+h1 a:hover,
+h1 a:focus {
+  color: darken(@glowroot-blue, 5%);
+}
+
+.index-header h1 {
+  color: darken(@glowroot-primary-color, 3%);
+  margin: 0 0 5px;
+}
+
+h2 {
+  color: @glowroot-text-color;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+h2 a {
+  color: @glowroot-text-color;
+}
+
+.glowroot-color {
+  font-size: 20px;
+  font-weight: 700;
+  color: #666;
+}
+
+.index-header h2 {
+  line-height: 40px;
+  margin: 0;
+}
+
+.index-body h2 {
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+p, li {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.index-code {
+  color: #5A5A5A;
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 0;
+}
+
+// scoped to <p> and <li> so that it doesn't affect anchors in navbar
+p a, li a {
+  text-decoration: none;
+  color: darken(@glowroot-blue, 5%);
+  font-weight: bold;
+  padding: 3px 2px;
+  border-radius: 3px;
+  margin: 0 -1px;
+}
+
+p a:hover,
+p a:focus {
+  text-decoration: none;
+  color: darken(@glowroot-blue, 5%);
+  background-color: #ddd;
+}
+
+p a:active {
+  background-color: #ccc;
+}
+
+hr.soften {
+  height: 1px;
+  margin: 40px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+  border: 0;
+}
+
+.overhead-table {
+  width: auto;
+}
+
+code {
+  .code;
+}
+
+.code {
+  background-color: #fcfcfc;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: #394d54;
+  padding: 2px 6px;
+}
+
+.codeblock {
+  .code;
+  display: inline-block;
+  padding: 10px 40px;
+  margin-left: 40px;
+}
+
+.benchmark-table {
+  margin-top: 30px;
+  max-width: 540px;
+}
+
+.environment {
+  width: 240px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.index-header {
+  display: inline-block;
+  padding: 100px 0 10px;
+}
+
+.index-header-1 {
+  margin-right: 20px;
+}
+
+.user-guide-contents li a {
+  padding-left: 0;
+}
+
+.large-list li {
+  font-size: 18px;
+}
+
+.versions {
+  font-size: 13px;
+  font-style: italic;
+}
+
+@media screen and (min-width: @screen-md-min) {
+
+  .index-header {
+    padding-left: 202px;
+  }
+
+  hr.soften {
+    margin: 50px 0;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+  }
+
+  .benchmark-table {
+    width: 540px;
+    display: inline-block;
+  }
+
+  .environment {
+    float: right;
+    margin-top: 40px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: @screen-lg-min) {
+  .index-header {
+    padding-left: 300px;
+  }
+
+  .environment {
+    margin-right: 100px;
+  }
+}

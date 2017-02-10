@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<!--(bake _includes/head.html title_prefix="Instrumentation &middot; ")-->
+<body>
+<!--(bake _includes/header.html li_api_class="active")-->
+<div class="container" style="padding-top: 50px; padding-bottom: 120px;">
+  <a href="https://github.com/glowroot/glowroot">
+    <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
+  </a>
+
+  <h1 style="font-size: 48px; margin-bottom: 50px;">Instrumentation</h1>
+
+  <p>
+    There are four ways to instrument your own application / library code if desired.
+  </p>
+
+  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Instrumentation UI</h2>
+
+  <p>
+    The easiest way to get started with instrumenting your code is to run Glowroot and use its Instrumentation UI,
+    which will help you autocomplete your way to instrumenting your code. Plus, you can apply the instrumentation you
+    create directly in the UI and it will re-transform your existing bytecode on the fly so you can test out your new
+    instrumentation immediately.
+  </p>
+
+  <p>
+    Check out the Instrumentation UI on the live demo site <a
+      href="https://demo.glowroot.org/config/instrumentation?new">https://demo.glowroot.org/config/instrumentation?new</a>,
+    or better, fire up Glowroot on your own application and try it out there!
+  </p>
+
+  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Agent API</h2>
+
+  <p>
+    The Agent API is for direct use by application code.
+  </p>
+
+  <p>
+    To use the Agent API, your application should only depend on the small Agent API jar file:
+  </p>
+
+  <pre class="codeblock">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.glowroot&lt;/groupId&gt;
+  &lt;artifactId&gt;glowroot-agent-api&lt;/artifactId&gt;
+  &lt;version&gt;0.9.10&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+  <p>
+    The Agent API has a built in empty stub implementation which is used if it doesn't find the Glowroot agent present
+    at runtime.
+  </p>
+
+  <p>
+    You can then annotate your application code to provide Glowroot with additional details, e.g.
+  </p>
+
+  <pre class="codeblock">
+<a href="javadoc/agent-api/0.9.10/org/glowroot/agent/api/Instrumentation.Timer.html">@Instrumentation.Timer</a>("process invoice")
+void processInvoice(Invoice invoice) {
+    ...
+}
+</pre>
+
+  <p>
+    Another annotation example:
+  </p>
+
+  <pre class="codeblock">
+<a href="javadoc/agent-api/0.9.10/org/glowroot/agent/api/Instrumentation.TraceEntry.html">@Instrumentation.TraceEntry</a>(message = "process invoice: &#123;{0.invoiceNumber}}",
+                       timer = "process invoice")
+void processInvoice(Invoice invoice) {
+    ...
+}
+</pre>
+
+  <p>
+    There is also the
+    <a href="javadoc/agent-api/0.9.10/org/glowroot/agent/api/Glowroot.html">org.glowroot.agent.api.Glowroot</a>
+    class which contains static methods to further annotate your application transactions/requests, e.g.
+    you can use to provide your own transaction name (which is used for display and aggregation purposes):
+  </p>
+
+  <pre class="codeblock">
+void processInvoice(Invoice invoice) {
+    <a href="javadoc/agent-api/0.9.10/org/glowroot/agent/api/Glowroot.html">Glowroot</a>.setTransactionName("Process Invoice");
+    ...
+}
+</pre>
+
+  <p>
+    For more details see the <a href="javadoc/agent-api/0.9.10">Agent API Javadoc</a>.
+  </p>
+
+  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">JSON-only Plugin</h2>
+
+  <p>
+    The easiest way to author a JSON-only plugin is to build your instrumentation in the Instrumentation UI and then hit
+    the 'Export all' button (see <a href="https://demo.glowroot.org/config/instrumentation-list">
+    https://demo.glowroot.org/config/instrumentation-list</a>). This will generate the JSON instrumentation
+    definition(s) that you can paste into your JSON-only plugin, e.g.
+  </p>
+
+  <!-- &#123; below to hide double curly braces from grunt-bake -->
+  <pre class="codeblock">
+{
+  "name": "My Application Plugin",
+  "id": "myapp",
+  "instrumentation": [
+    {
+      "className": "com.example.myapp.InvoiceService",
+      "methodName": "processInvoice",
+      "methodParameterTypes": [
+        "com.example.myapp.Invoice"
+      ],
+      "captureKind": "trace-entry",
+      "timerName": "process invoice",
+      "traceEntryMessageTemplate": "process invoice: &#123;{0.invoiceNumber}}"
+    }
+  ]
+}
+</pre>
+
+  <p>
+    To install a purely JSON-defined plugin, simply drop the json file into glowroot/plugins and restart your JVM.
+  </p>
+
+  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Plugin API</h2>
+
+  <p>
+    For more complex plugins you can use the Plugin API. For example, the same instrumentation from above can be written
+    using the Plugin API like this:
+  </p>
+
+  <pre class="codeblock">
+package com.example.myplugin;
+
+import org.glowroot.agent.plugin.api.*;
+import org.glowroot.agent.plugin.api.weaving.*;
+
+public class InvoiceAspect {
+
+    // Glowroot will inject this interface into com.example.myapp.Invoice's interface list
+    // so that the plugin can access it regardless of what class loader loads com.example.myapp.Invoice
+    @Shim("com.example.myapp.Invoice")
+    public interface Invoice {
+        String getInvoiceNumber();
+    }
+
+    @Pointcut(className = "com.example.myapp.InvoiceService", methodName = "processInvoice",
+            methodParameterTypes = {"com.example.myapp.Invoice"}, timer = "process invoice")
+    public static class ProcessInvoiceAdvice {
+
+        private static final TimerName timer = Agent.getTimerName(ProcessInvoiceAdvice.class);
+
+        @OnBefore
+        public static TraceEntry onBefore(ThreadContext context, @BindParameter Invoice invoice) {
+            return context.startTraceEntry(
+                    MessageSupplier.from("process invoice: {}", invoice.getInvoiceNumber()), timer);
+        }
+
+        @OnReturn
+        public static void onReturn(@BindTraveler TraceEntry traceEntry) {
+            traceEntry.end();
+        }
+
+        @OnThrow
+        public static void onThrow(@BindThrowable Throwable throwable,
+                @BindTraveler TraceEntry traceEntry) {
+            traceEntry.endWithError(throwable);
+        }
+    }
+}
+</pre>
+
+  <p>
+    and accompanying glowroot.plugin.json file:
+  </p>
+
+  <!-- &#123; below to hide double curly braces from grunt-bake -->
+  <pre class="codeblock">
+{
+  "name": "My Application Plugin",
+  "id": "myapp",
+  "aspects": [
+    "com.example.myplugin.InvoiceAspect"
+  ]
+}
+</pre>
+
+  <p>To install the above plugin, build a jar file with your plugin class files and the glowroot.plugin.json file and
+    drop the resulting jar file into glowroot/plugins (and restart your JVM).
+  </p>
+
+  <p>
+    For more details see the <a href="javadoc/agent-plugin-api/0.9.10">Plugin API Javadoc</a>.
+  </p>
+
+  <p>
+    Also, all of the core plugins are written using the Plugin API, so can be good sources of inspiration for what is
+    possible
+    <a href="https://github.com/glowroot/glowroot/tree/master/agent/plugins">
+      https://github.com/glowroot/glowroot/tree/master/agent/plugins</a>.
+  </p>
+
+</div>
+<!--(bake _includes/footer.html)-->
+</body>
+</html>

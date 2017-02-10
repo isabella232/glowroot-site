@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<!--(bake _includes/head.html title_prefix="Features &middot; ")-->
+<body>
+<!--(bake _includes/header.html li_features_class="active")-->
+<div class="container" style="padding-top: 50px; padding-bottom: 120px;">
+  <a href="https://github.com/glowroot/glowroot">
+    <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
+  </a>
+
+  <h1 style="font-size: 44px; margin-bottom: 24px;">Features</h1>
+
+  <ul>
+    <li>Trace capture for slow requests and errors</li>
+    <li>Continuous profiling (with very handy filtering)</li>
+    <li>Response time breakdown charts</li>
+    <li>Response time percentile charts</li>
+    <li>SQL capture and aggregation</li>
+    <li>Service call capture and aggregation</li>
+    <li>MBean attribute capture and charts</li>
+    <li>Alerting on response time percentiles and MBean attributes</li>
+    <li>Historical rollup of all data (1m, 5m, 30m, 4h) with configurable retention</li>
+    <li>Full support for async requests that span multiple threads</li>
+    <li>Responsive UI with mobile support</li>
+    <li><a href="https://github.com/glowroot/glowroot/wiki/Central-Collector-Installation">Optional central collector</a></li>
+  </ul>
+
+  <h1 style="font-size: 40px; margin-bottom: 24px; margin-top: 40px;">Framework and library instrumentation</h1>
+
+  <!-- margin-bottom: 0 is for mobile -->
+  <ul style="display: inline-block; vertical-align: top; margin-right: 100px; margin-bottom: 0;">
+    <li>Cassandra
+      <ul>
+        <li>DataStax CQL driver</li>
+      </ul>
+    </li>
+    <li>Java Executors</li>
+    <li>Grails</li>
+    <li>Hibernate</li>
+    <li>HTTP clients
+      <ul>
+        <li>Apache HttpClient</li>
+        <li>Apache HttpAsyncClient</li>
+        <li>AsyncHttpClient</li>
+        <li>CXF WebService Client</li>
+        <li>OkHttp</li>
+        <li>Spring Rest Client</li>
+      </ul>
+    </li>
+    <li>Jdbc</li>
+    <li>JMS</li>
+  </ul>
+  <ul style="display: inline-block; vertical-align: top; margin-bottom: 0;">
+    <li>JSF</li>
+    <li>JSP</li>
+    <li>Loggers
+      <ul>
+        <li>Log4j</li>
+        <li>Logback</li>
+      </ul>
+    </li>
+    <li>Netty (HTTP codec)</li>
+    <li>Play Framework (1 and 2)</li>
+    <li>Quartz Scheduler</li>
+    <li>Redis
+      <ul>
+        <li>Jedis</li>
+      </ul>
+    </li>
+    <li>Spray</li>
+    <li>Spring Framework</li>
+    <li>Servlets</li>
+  </ul>
+
+  <h1 style="font-size: 40px; margin-bottom: 24px; margin-top: 40px;">Application server support</h1>
+
+  <p>
+    Glowroot has been tested on the following application servers:
+  </p>
+
+  <ul>
+    <li>Tomcat</li>
+    <li>TomEE</li>
+    <li>JBoss EAP</li>
+    <li>Wildfly</li>
+    <li>Jetty</li>
+    <li>Glassfish</li>
+  </ul>
+
+  <p>
+    If you try it out on any other application servers, please post a
+    <a href="https://github.com/glowroot/glowroot/issues">GitHub issue</a>
+    with your findings!
+  </p>
+</div>
+<!--(bake _includes/footer.html)-->
+</body>
+</html>
