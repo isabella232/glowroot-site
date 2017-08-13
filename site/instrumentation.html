@@ -43,7 +43,7 @@
 &lt;dependency&gt;
   &lt;groupId&gt;org.glowroot&lt;/groupId&gt;
   &lt;artifactId&gt;glowroot-agent-api&lt;/artifactId&gt;
-  &lt;version&gt;0.9.23&lt;/version&gt;
+  &lt;version&gt;0.9.24&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
@@ -57,7 +57,7 @@
   </p>
 
   <pre class="codeblock">
-<a href="javadoc/agent-api/0.9.23/org/glowroot/agent/api/Instrumentation.Timer.html">@Instrumentation.Timer</a>("process invoice")
+<a href="javadoc/agent-api/0.9.24/org/glowroot/agent/api/Instrumentation.Timer.html">@Instrumentation.Timer</a>("process invoice")
 void processInvoice(Invoice invoice) {
     ...
 }
@@ -68,7 +68,7 @@ void processInvoice(Invoice invoice) {
   </p>
 
   <pre class="codeblock">
-<a href="javadoc/agent-api/0.9.23/org/glowroot/agent/api/Instrumentation.TraceEntry.html">@Instrumentation.TraceEntry</a>(message = "process invoice: &#123;{0.invoiceNumber}}",
+<a href="javadoc/agent-api/0.9.24/org/glowroot/agent/api/Instrumentation.TraceEntry.html">@Instrumentation.TraceEntry</a>(message = "process invoice: &#123;{0.invoiceNumber}}",
                        timer = "process invoice")
 void processInvoice(Invoice invoice) {
     ...
@@ -77,20 +77,20 @@ void processInvoice(Invoice invoice) {
 
   <p>
     There is also the
-    <a href="javadoc/agent-api/0.9.23/org/glowroot/agent/api/Glowroot.html">org.glowroot.agent.api.Glowroot</a>
+    <a href="javadoc/agent-api/0.9.24/org/glowroot/agent/api/Glowroot.html">org.glowroot.agent.api.Glowroot</a>
     class which contains static methods to further annotate your application transactions/requests, e.g.
     you can use to provide your own transaction name (which is used for display and aggregation purposes):
   </p>
 
   <pre class="codeblock">
 void processInvoice(Invoice invoice) {
-    <a href="javadoc/agent-api/0.9.23/org/glowroot/agent/api/Glowroot.html">Glowroot</a>.setTransactionName("Process Invoice");
+    <a href="javadoc/agent-api/0.9.24/org/glowroot/agent/api/Glowroot.html">Glowroot</a>.setTransactionName("Process Invoice");
     ...
 }
 </pre>
 
   <p>
-    For more details see the <a href="javadoc/agent-api/0.9.23">Agent API Javadoc</a>.
+    For more details see the <a href="javadoc/agent-api/0.9.24">Agent API Javadoc</a>.
   </p>
 
   <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">JSON-only Plugin</h2>
@@ -194,7 +194,7 @@ public class InvoiceAspect {
   </p>
 
   <p>
-    For more details see the <a href="javadoc/agent-plugin-api/0.9.23">Plugin API Javadoc</a>.
+    For more details see the <a href="javadoc/agent-plugin-api/0.9.24">Plugin API Javadoc</a>.
   </p>
 
   <p>
