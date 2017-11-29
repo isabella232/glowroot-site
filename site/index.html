@@ -6,7 +6,7 @@
 <meta name="twitter:title" content="Easy to use, low overhead, open source Java APM"/>
 <meta name="twitter:description" content="Glowroot helps you get to the root of application performance issues."/>
 <meta name="twitter:image" content="https://glowroot.org/images/favicon-440x440.22b5b3f3.png"/>
-<body>
+<body class="footer-align-center">
 <div id="wrap">
   <!--(bake _includes/header.html)-->
   <div class="container" style="padding-bottom: 20px;">
@@ -27,7 +27,7 @@
       </div>
     </div>
     <hr class="soften">
-    <div class="index-body" style="padding-top: 10px;">
+    <div class="index-body" style="padding-top: 10px; padding-bottom: 10px;">
       <div class="row">
         <!-- margin-bottom is for mobile devices when the columns become rows -->
         <div class="col-md-4" style="margin-bottom: 40px;">
@@ -68,6 +68,47 @@
       <div class="row">
       </div>
     </div>
+    <hr class="soften" style="margin-top: 0;">
+    <div class="index-body nice-things" style="padding: 10px 0 40px;">
+      <h2 style="font-size: 26px; padding-bottom: 25px;">Some nice things users have said:</h2>
+
+      <p>
+        <a href="https://groups.google.com/d/msg/glowroot/ckUNR6ZDRzY/JfNeKM1EBAAJ">
+          "I am amazed by how simple and useful it is."
+        </a>
+      </p>
+
+      <p>
+        <a href="https://github.com/glowroot/glowroot/issues/145#issue-191863891">
+          "Wonderful tool. Working in my production server in 15 minutes."
+        </a>
+      </p>
+
+      <p>
+        <a href="https://github.com/glowroot/glowroot/issues/247#issuecomment-321110687">
+          "I really love using glowroot."
+        </a>
+      </p>
+
+      <p>
+        <a href="https://groups.google.com/d/msg/glowroot/IkMxfx1waF0/aKhtZ7eSAgAJ">
+          "Amazing APM that gets better and better with each release."
+        </a>
+      </p>
+
+      <p>
+        <a href="https://groups.google.com/d/msg/glowroot/sRVoaDGHT-s/EyTw0qqhDgAJ">
+          "It is simple to use and provides enough data to understand and resolve the bottlenecks."
+        </a>
+      </p>
+
+      <p>
+        <a href="https://github.com/glowroot/glowroot/issues/108#issue-172251714">
+          "Glowroot has been very useful to my team!"
+        </a>
+      </p>
+
+    </div>
   </div>
 </div>
 <!--(bake _includes/footer.html)-->
@@ -76,6 +117,7 @@
   addListener(downloadLink, 'click', function () {
     ga('send', 'pageview', '/download');
   });
+
   function addListener(element, type, callback) {
     if (element.addEventListener) element.addEventListener(type, callback);
     else if (element.attachEvent) element.attachEvent('on' + type, callback);
