@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <!--(bake _includes/head.html)-->
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:site" content="@glowroot"/>
@@ -7,110 +7,110 @@
 <meta name="twitter:description" content="Glowroot helps you get to the root of application performance issues."/>
 <meta name="twitter:image" content="https://glowroot.org/images/favicon-440x440.22b5b3f3.png"/>
 <body class="footer-align-center">
-<div id="wrap">
-  <!--(bake _includes/header.html)-->
-  <div class="container" style="padding-bottom: 20px;">
-    <a href="https://github.com/glowroot/glowroot">
-      <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
-    </a>
+<!--(bake _includes/header.html)-->
+<main class="container"
+      style="padding-bottom: 20px;"
+      role="main">
+  <a href="https://github.com/glowroot/glowroot">
+    <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
+  </a>
 
-    <div class="index-header">
-      <div class="index-header-1" style="display: inline-block;">
-        <img src="images/favicon-440x440.png" width="165" height="165">
-      </div>
-      <div class="index-header-2" style="display: inline-block; vertical-align: top; padding-top: 25px;">
-        <h1>Glowroot</h1>
-
-        <h2>
-          Open source Java APM
-        </h2>
-      </div>
+  <div class="index-header">
+    <div class="index-header-1" style="display: inline-block;">
+      <img src="images/favicon-440x440.png" alt="Glowroot logo" width="165" height="165">
     </div>
-    <hr class="soften">
-    <div class="index-body" style="padding-top: 10px; padding-bottom: 10px;">
-      <div class="row">
-        <!-- margin-bottom is for mobile devices when the columns become rows -->
-        <div class="col-md-4" style="margin-bottom: 40px;">
-          <h2>(Very) easy to use</h2>
+    <div class="index-header-2" style="display: inline-block; vertical-align: top; padding-top: 25px;">
+      <h1>Glowroot</h1>
 
-          <p>
-            Download and unzip
-            <!-- line-height=0 is to keep the target element from pushing down next line a bit -->
-            <a href="https://github.com/glowroot/glowroot/releases/download/v0.10.9/glowroot-0.10.9-dist.zip"
-               id="downloadLink" style="line-height: 0;">glowroot-0.10.9-dist.zip</a>,
-            add <code class="index-code">-javaagent:path/to/glowroot.jar</code>
-            to your application's JVM args, point your browser to
-            <code class="index-code">http://localhost:4000</code>,
-            and see all <a href="https://demo.glowroot.org">this</a>!
-          </p>
-        </div>
-        <!-- margin-bottom is for mobile devices when the columns become rows -->
-        <div class="col-md-4" style="margin-bottom: 40px;">
-          <h2>Very (very) low overhead</h2>
-
-          <p>
-            Overhead depends on many factors, but is
-            <a href="overhead.html" style="line-height: 0;">generally in the low
-              <span style="text-decoration: underline;">microseconds</span>
-            </a>
-            due to extensive microbenchmarking and tuning of Glowroot itself.
-          </p>
-        </div>
-        <!-- margin-bottom is for mobile devices when the columns become rows -->
-        <div class="col-md-4" style="margin-bottom: 40px;">
-          <h2>Get to the root</h2>
-
-          <p>
-            Glowroot helps you get to the root of application performance issues.
-          </p>
-        </div>
-      </div>
-      <div class="row">
-      </div>
-    </div>
-    <hr class="soften" style="margin-top: 0;">
-    <div class="index-body nice-things" style="padding: 10px 0 40px;">
-      <h2 style="font-size: 26px; padding-bottom: 25px;">Some nice things users have said:</h2>
-
-      <p>
-        <a href="https://groups.google.com/d/msg/glowroot/ckUNR6ZDRzY/JfNeKM1EBAAJ">
-          "I am amazed by how simple and useful it is."
-        </a>
-      </p>
-
-      <p>
-        <a href="https://github.com/glowroot/glowroot/issues/145#issue-191863891">
-          "Wonderful tool. Working in my production server in 15 minutes."
-        </a>
-      </p>
-
-      <p>
-        <a href="https://github.com/glowroot/glowroot/issues/247#issuecomment-321110687">
-          "I really love using glowroot."
-        </a>
-      </p>
-
-      <p>
-        <a href="https://groups.google.com/d/msg/glowroot/IkMxfx1waF0/aKhtZ7eSAgAJ">
-          "Amazing APM that gets better and better with each release."
-        </a>
-      </p>
-
-      <p>
-        <a href="https://groups.google.com/d/msg/glowroot/sRVoaDGHT-s/EyTw0qqhDgAJ">
-          "It is simple to use and provides enough data to understand and resolve the bottlenecks."
-        </a>
-      </p>
-
-      <p>
-        <a href="https://github.com/glowroot/glowroot/issues/108#issue-172251714">
-          "Glowroot has been very useful to my team!"
-        </a>
-      </p>
-
+      <h2>
+        Open source Java APM
+      </h2>
     </div>
   </div>
-</div>
+  <hr class="soften">
+  <div class="index-body" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="row">
+      <!-- margin-bottom is for mobile devices when the columns become rows -->
+      <div class="col-md-4" style="margin-bottom: 40px;">
+        <h2>(Very) easy to use</h2>
+
+        <p>
+          Download and unzip
+          <!-- line-height=0 is to keep the target element from pushing down next line a bit -->
+          <a href="https://github.com/glowroot/glowroot/releases/download/v0.10.9/glowroot-0.10.9-dist.zip"
+             id="downloadLink" style="line-height: 0;">glowroot-0.10.9-dist.zip</a>,
+          add <code class="index-code">-javaagent:path/to/glowroot.jar</code>
+          to your application's JVM args, point your browser to
+          <code class="index-code">http://localhost:4000</code>,
+          and see all <a href="https://demo.glowroot.org">this</a>!
+        </p>
+      </div>
+      <!-- margin-bottom is for mobile devices when the columns become rows -->
+      <div class="col-md-4" style="margin-bottom: 40px;">
+        <h2>Very (very) low overhead</h2>
+
+        <p>
+          Overhead depends on many factors, but is
+          <a href="overhead.html" style="line-height: 0;">generally in the low
+            <span style="text-decoration: underline;">microseconds</span>
+          </a>
+          due to extensive microbenchmarking and tuning of Glowroot itself.
+        </p>
+      </div>
+      <!-- margin-bottom is for mobile devices when the columns become rows -->
+      <div class="col-md-4" style="margin-bottom: 40px;">
+        <h2>Get to the root</h2>
+
+        <p>
+          Glowroot helps you get to the root of application performance issues.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+  <hr class="soften" style="margin-top: 0;">
+  <div class="index-body nice-things" style="padding: 10px 0 40px;">
+    <h2 style="font-size: 26px; padding-bottom: 25px;">Some nice things users have said:</h2>
+
+    <p>
+      <a href="https://groups.google.com/d/msg/glowroot/ckUNR6ZDRzY/JfNeKM1EBAAJ">
+        "I am amazed by how simple and useful it is."
+      </a>
+    </p>
+
+    <p>
+      <a href="https://github.com/glowroot/glowroot/issues/145#issue-191863891">
+        "Wonderful tool. Working in my production server in 15 minutes."
+      </a>
+    </p>
+
+    <p>
+      <a href="https://github.com/glowroot/glowroot/issues/247#issuecomment-321110687">
+        "I really love using glowroot."
+      </a>
+    </p>
+
+    <p>
+      <a href="https://groups.google.com/d/msg/glowroot/IkMxfx1waF0/aKhtZ7eSAgAJ">
+        "Amazing APM that gets better and better with each release."
+      </a>
+    </p>
+
+    <p>
+      <a href="https://groups.google.com/d/msg/glowroot/sRVoaDGHT-s/EyTw0qqhDgAJ">
+        "It is simple to use and provides enough data to understand and resolve the bottlenecks."
+      </a>
+    </p>
+
+    <p>
+      <a href="https://github.com/glowroot/glowroot/issues/108#issue-172251714">
+        "Glowroot has been very useful to my team!"
+      </a>
+    </p>
+
+  </div>
+</main>
 <!--(bake _includes/footer.html)-->
 <script>
   var downloadLink = document.getElementById('downloadLink');
