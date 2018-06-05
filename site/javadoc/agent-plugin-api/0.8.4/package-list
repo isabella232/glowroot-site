@@ -1,5 +1,0 @@
-org.glowroot.plugin.api
-org.glowroot.plugin.api.config
-org.glowroot.plugin.api.transaction
-org.glowroot.plugin.api.util
-org.glowroot.plugin.api.weaving
