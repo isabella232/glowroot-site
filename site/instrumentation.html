@@ -151,7 +151,7 @@ public class InvoiceAspect {
     }
 
     @Pointcut(className = "com.example.myapp.InvoiceService", methodName = "processInvoice",
-            methodParameterTypes = {"com.example.myapp.Invoice"}, timer = "process invoice")
+            methodParameterTypes = {"com.example.myapp.Invoice"}, timerName = "process invoice")
     public static class ProcessInvoiceAdvice {
 
         private static final TimerName timer = Agent.getTimerName(ProcessInvoiceAdvice.class);
@@ -159,7 +159,7 @@ public class InvoiceAspect {
         @OnBefore
         public static TraceEntry onBefore(ThreadContext context, @BindParameter Invoice invoice) {
             return context.startTraceEntry(
-                    MessageSupplier.from("process invoice: {}", invoice.getInvoiceNumber()), timer);
+                    MessageSupplier.create("process invoice: {}", invoice.getInvoiceNumber()), timer);
         }
 
         @OnReturn
