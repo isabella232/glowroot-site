@@ -16,7 +16,7 @@
     There are four ways to instrument your own application / library code if desired.
   </p>
 
-  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Instrumentation UI</h2>
+  <h2 id="instrumentation-ui" style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Instrumentation UI</h2>
 
   <p>
     The easiest way to get started with instrumenting your code is to run Glowroot and use its Instrumentation UI,
@@ -31,7 +31,7 @@
     or better, fire up Glowroot on your own application and try it out there!
   </p>
 
-  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Agent API</h2>
+  <h2 id="agent-api" style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Agent API</h2>
 
   <p>
     The Agent API is for direct use by application code.
@@ -95,7 +95,7 @@ void processInvoice(Invoice invoice) {
     For more details see the <a href="javadoc/agent-api/0.13.0">Agent API Javadoc</a>.
   </p>
 
-  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">JSON-only Plugin</h2>
+  <h2 id="json-only-plugin" style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">JSON-only Plugin</h2>
 
   <p>
     The easiest way to author a JSON-only plugin is to build your instrumentation in the Instrumentation UI and then hit
@@ -128,7 +128,7 @@ void processInvoice(Invoice invoice) {
     To install a purely JSON-defined plugin, simply drop the json file into glowroot/plugins and restart your JVM.
   </p>
 
-  <h2 style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Plugin API</h2>
+  <h2 id="plugin-api" style="font-size: 40px; margin-bottom: 50px; margin-top: 50px;">Plugin API</h2>
 
   <p>
     For more complex plugins you can use the Plugin API. For example, the same instrumentation from above can be written
