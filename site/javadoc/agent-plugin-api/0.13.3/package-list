@@ -1,0 +1,5 @@
+org.glowroot.agent.plugin.api
+org.glowroot.agent.plugin.api.checker
+org.glowroot.agent.plugin.api.config
+org.glowroot.agent.plugin.api.util
+org.glowroot.agent.plugin.api.weaving
