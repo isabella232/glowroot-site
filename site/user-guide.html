@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<!--(bake _includes/head.html title_prefix="User Guide &middot; ")-->
+<body>
+<div id="wrap">
+  <!--(bake _includes/header.html li_user_guide_class="active")-->
+  <div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+    <a href="https://github.com/glowroot/glowroot">
+      <img class="forkme" src="images/forkme.png" alt="Fork me on GitHub">
+    </a>
+
+    <h1 style="font-size: 48px; margin-bottom: 50px;">User guide</h1>
+
+    <div class="user-guide-contents clearfix">
+      <ul class="list-unstyled" style="margin-left: 3px; float: left;">
+        <li>Transactions</li>
+        <ul class="list-unstyled" style="margin-left: 20px;">
+          <li><a href="#transaction-navigation">Basic navigation</a></li>
+          <li>Response time</li>
+          <ul class="list-unstyled" style="margin-left: 20px;">
+            <li><a href="#transaction-average">Averages</a></li>
+            <li><a href="#transaction-percentiles">Percentiles</a></li>
+          </ul>
+          <li>Continuous profiling</li>
+          <ul class="list-unstyled" style="margin-left: 20px;">
+            <li><a href="#transaction-profiling">Tree view</a></li>
+            <li><a href="#transaction-flame-graph">Flame graph</a></li>
+          </ul>
+          <li>Slow traces</li>
+          <ul class="list-unstyled" style="margin-left: 20px;">
+            <li><a href="#slow-trace-scatter-chart">Scatter chart</a></li>
+            <li>Individual traces</li>
+            <ul class="list-unstyled" style="margin-left: 20px;">
+              <li><a href="#slow-trace-header">Header</a></li>
+              <li><a href="#slow-trace-entries">Entries</a></li>
+              <li><a href="#slow-trace-profile">Profile</a></li>
+            </ul>
+          </ul>
+          <li><a href="#transaction-queries">External queries</a></li>
+        </ul>
+      </ul>
+      <ul class="list-unstyled" style="margin-left: 50px; float: left;">
+        <li>Errors</li>
+        <ul class="list-unstyled" style="margin-left: 20px;">
+          <li><a href="#error-navigation">Basic navigation</a></li>
+          <li><a href="#error-messages">Error messages</a></li>
+          <li>Error traces</li>
+          <ul class="list-unstyled" style="margin-left: 20px;">
+            <li><a href="#error-trace-scatter-chart">Scatter chart</a></li>
+            <li>Individual traces</li>
+            <ul class="list-unstyled" style="margin-left: 20px;">
+              <li><a href="#error-trace-header">Header</a></li>
+              <li><a href="#error-trace-entries">Entries</a></li>
+            </ul>
+          </ul>
+        </ul>
+      </ul>
+      <ul class="list-unstyled" style="margin-left: 50px; float: left;">
+        <li>JVM</li>
+        <ul class="list-unstyled" style="margin-left: 20px;">
+          <li><a href="#jvm-gauges">Gauges</a></li>
+          <li><a href="#jvm-mbean-tree">MBean tree</a></li>
+          <li><a href="#jvm-thread-dump">Thread dump</a></li>
+          <li><a href="#jvm-heap-dump">Heap dump</a></li>
+          <li><a href="#jvm-process-info">Process info</a></li>
+          <li><a href="#jvm-system-properties">System properties</a></li>
+        </ul>
+      </ul>
+      <ul class="list-unstyled" style="margin-left: 50px; float: left;">
+        <li>Config</li>
+        <ul class="list-unstyled" style="margin-left: 20px;">
+          <li><a href="#config-transaction">Transactions</a></li>
+          <li><a href="#config-gauges">Gauges</a></li>
+          <li><a href="#config-alerts">Alerts</a></li>
+          <li><a href="#config-plugins">Plugins</a></li>
+          <li><a href="#config-instrumentation">Instrumentation</a></li>
+          <li><a href="#config-ui">UI</a></li>
+          <li><a href="#config-storage">Storage</a></li>
+        </ul>
+      </ul>
+    </div>
+
+
+    <h2 id="transaction-navigation" style="margin-top: 30px;">Basic navigation</h2>
+
+    <img src="images/user-guide/transactions/navigation.png" style="max-width: 100%; margin-top: 20px;">
+
+    <h3>Transaction type <b>(A)</b></h3>
+
+    <p>
+      With the default set of plugins, there are two transaction types, Servlet and Background (e.g. Quartz jobs).
+      Additional plugins or UI configured instrumentation can define other transaction types.
+    </p>
+
+    <h3>Time period <b>(B)</b></h3>
+
+    <p>
+      Select the time period. There are multiple rollup levels so you can view fine-grained detail for more recent time
+      periods, but still access older data at coarser-grained levels. The rollups and disk space limits can be
+      customized under the Configuration menu.
+    </p>
+
+    <h3>Transaction <b>(C)</b></h3>
+
+    <p>
+      Select a specific named transaction, or view the data across 'All Transactions'
+      (of the selected transaction type).
+      The default transaction names can be overridden by plugins and/or UI configured instrumentation.
+    </p>
+
+    <h3>Tab <b>(D)</b></h3>
+
+    <p>
+      Select the tab of data to view for the selected transaction over the selected time period.
+      See below for detailed coverage of each tab.
+    </p>
+
+    <h3>Bonus!</h3>
+
+    <p>
+      All pages are url addressable, the currently applied filters are always part of your current url,
+      and the browser back/forward buttons work as expected!
+    </p>
+
+
+    <h2 id="transaction-average" style="margin-top: 50px;">Response time (average)</h2>
+
+    <p>
+      Charts the average response time, broken down by the top 5 timers over the given time period.
+    </p>
+
+    <img src="images/user-guide/transactions/average.png" style="margin-top: 20px;">
+
+    <h3>Chart controls <b>(A)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Chart tooltip <b>(B)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Chart legend <b>(C)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Complete timer breakdown</h3>
+
+    <p>
+
+    </p>
+
+    <h3>Timer breakdown view: Flat vs Tree <b>(D)</b></h3>
+
+    <p>
+
+    </p>
+
+    <img src="images/user-guide/transactions/timer-tree-view.png" style="margin-left: 30px;">
+
+    <h3>Average JVM thread info</h3>
+
+    <p>
+
+    </p>
+
+    <h3>Throughput</h3>
+
+    <p>
+
+    </p>
+
+
+    <h2 id="transaction-percentiles" style="margin-top: 50px;">Response time (percentiles)</h2>
+
+    <p>
+      Charts arbitrary percentiles over the given time period.
+    </p>
+
+    <img src="images/user-guide/transactions/percentiles.png" style="margin-top: 20px;">
+
+    <h3>Chart controls <b>(A)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Chart tooltip <b>(B)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Percentile selection <b>(C)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Percentiles over the full time period <b>(D)</b></h3>
+
+    <p>
+      Displays the response time percentiles over the full time period.
+    </p>
+
+
+    <h2 id="transaction-profiling" style="margin-top: 50px;">Continuous profiling (tree view)</h2>
+
+    <p>
+      View profiling data for the given time period.
+    </p>
+
+    <img src="images/user-guide/transactions/profiling.png" style="margin-top: 20px;">
+
+    <h3>Filter <b>(A)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Flame graph <b>(B)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Expand nodes <b>(C)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Node percentage <b>(D)</b></h3>
+
+    <p>
+
+    </p>
+
+
+    <h2 id="transaction-flame-graph" style="margin-top: 50px;">Continuous profiling (flame graph)</h2>
+
+    <p>
+      TODO contract nodes before rendering flame graph, then get new picture of full "flame" graph, but without height
+      problem.
+    </p>
+
+    <p>
+      From the continuous profiling view (above), you can view a flame graph representation of the (possibly filtered)
+      profile.
+    </p>
+
+    <img src="images/user-guide/transactions/flame-graph.png" style="margin-top: 20px;">
+
+
+    <h2 id="slow-trace-scatter-chart" style="margin-top: 50px;">Slow traces (scatter chart)</h2>
+
+    <img src="images/user-guide/transactions/slow-trace-scatter-chart.png" style="margin-top: 20px;">
+
+    <h3>Chart controls <b>(A)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Slow traces <b>(B)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Filters <b>(C)</b></h3>
+
+    <p>
+
+    </p>
+
+
+    <h2 id="slow-trace-header" style="margin-top: 50px;">Individual slow trace (header)</h2>
+
+    <img src="images/user-guide/transactions/slow-trace-header.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="slow-trace-entries" style="margin-top: 50px;">Individual slow trace (trace entries)</h2>
+
+    <img src="images/user-guide/transactions/slow-trace-entries.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="slow-trace-profile" style="margin-top: 50px;">Individual slow trace (profile)</h2>
+
+    <img src="images/user-guide/transactions/slow-trace-profile.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="transaction-queries" style="margin-top: 50px;">External queries</h2>
+
+    <img src="images/user-guide/transactions/external-queries.png" style="margin-top: 20px;">
+
+    <h3>Sorting <b>(A)</b></h3>
+
+    <p>
+
+    </p>
+
+    <h3>Full query text <b>(B)</b></h3>
+
+    <p>
+
+    </p>
+
+    <img src="images/user-guide/transactions/full-query-text.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="error-navigation" style="margin-top: 50px;">Basic navigation</h2>
+
+    <img src="images/user-guide/errors/navigation.png" style="margin-top: 20px;">
+
+    <h3>A</h3>
+
+    <p>
+
+    </p>
+
+    <h3>B</h3>
+
+    <p>
+
+    </p>
+
+    <h3>C</h3>
+
+    <p>
+
+    </p>
+
+    <h3>D</h3>
+
+    <p>
+
+    </p>
+
+    <h3>E</h3>
+
+    <p>
+
+    </p>
+
+
+
+    <h2 id="error-messages" style="margin-top: 50px;">Error messages</h2>
+
+    <img src="images/user-guide/transactions/error-messages.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="error-trace-scatter-chart" style="margin-top: 50px;">Error traces (scatter chart)</h2>
+
+    <img src="images/user-guide/transactions/error-trace-scatter-chart.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="error-trace-header" style="margin-top: 50px;">Individual error trace (header)</h2>
+
+    <img src="images/user-guide/transactions/error-trace-header.png" style="margin-top: 20px;">
+
+
+
+    <h2 id="error-trace-entries" style="margin-top: 50px;">Individual error trace (trace entries)</h2>
+
+    <img src="images/user-guide/transactions/error-trace-entries.png" style="margin-top: 20px;">
+
+
+
+
+    <h2 id="jvm-gauges" style="margin-top: 50px;">Gauges</h2>
+
+    <img src="images/user-guide/jvm/gauges.png" style="margin-top: 20px;">
+
+    <p>
+
+    </p>
+  </div>
+</div>
+<!--(bake _includes/footer.html)-->
+</body>
+</html>
