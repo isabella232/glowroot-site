@@ -58,6 +58,8 @@ git commit -m "Release version $new_version: update javadocs"
 
 git push
 
+npm install
+bower install
 grunt
 
 mkdir -p dist/latest
@@ -65,4 +67,4 @@ curl -L -o dist/latest/glowroot-latest-dist.zip https://github.com/glowroot/glow
 curl -L -o dist/latest/glowroot-central-latest-dist.zip https://github.com/glowroot/glowroot/releases/download/v$new_version/glowroot-central-$new_version-dist.zip
 curl -L -o dist/latest/glowroot-central-latest-dist.war https://github.com/glowroot/glowroot/releases/download/v$new_version/glowroot-central-$new_version-dist.war
 
-AWS_DEFAULT_REGION=us-east-1 aws.cmd s3 sync dist s3://glowroot.org
+AWS_DEFAULT_REGION=us-east-1 aws.exe s3 sync dist s3://glowroot.org
